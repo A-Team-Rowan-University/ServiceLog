@@ -4,8 +4,12 @@
     <base target="_top">
   </head>
   <body>
-    <p>Hello</p>
+    <p>Hello, World!</p>
+    <p id="testing">Testing2</p>
+    <script>
+      var tesing = document.getElementById("testing");
+      var result = google.script.run.getUserInfo("hello");
+      testing.innerHTML = result
+    </script>
   </body>
 </html>
-
-

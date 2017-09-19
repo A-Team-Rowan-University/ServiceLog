@@ -6,5 +6,11 @@ function doGet(e) {
 }
 
 function getUserInfo(user_id) {
-  
+  var spreadsheet = SpreadsheetApp.openById(userSpreadsheet);
+  var range = spreadsheet.getRange("Users!A:C");
+  var values = range.getValues();
+  Logger.log(user_id);
+  Logger.log(values);
+  Logger.log(range);
+  return values;
 }
