@@ -6,6 +6,7 @@
 rm -r build
 mkdir build
 
+echo "Making files Google Scripts compatable"
 
 cp src/client/html/* build/
 
@@ -33,3 +34,8 @@ done
 
 
 cp src/server/* build/
+
+
+if [ $1 = "deploy" ]; then
+    gapps upload
+fi

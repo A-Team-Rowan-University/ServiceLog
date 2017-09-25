@@ -10,18 +10,29 @@
   ECE Resource Center Assistance Log
   <p id="testing">Testing</p>
 
-  <form>
-    Tech Office Worker:
-    <input type="text" name="worker"><br> Customer:
-    <input type="text" name="customer"><br> Service Category:<br>
-    <input type="radio" name="servicecategory" value="Parts Request/Fulfillment">Parts Request/Fulfillment<br>
-    <input type="radio" name="servicecategory" value="Instrumentation/Equipment Loan">Instrumentation/Equipment Loan<br>
-    <input type="radio" name="servicecategory" value="3D Printer">3D Printer<br>
-    <input type="radio" name="servicecategory" value="Assitance">Assitance<br>
-    <input type="radio" name="servicecategory" value="Facilities">Facilities<br>
-    <input type="radio" name="servicecategory" value="Other">Other<br> Service Description:
-    <input type="text" name="description"><br>
-  </form>
+  <div>
+    <p class="label">Tech Office Employee:</p>
+    <input id="employee_id" class="input" type="text">
+
+    <div id="employee_found" class="user_info">
+      <p>Employee Found</p>
+      <p id="employee_name"></p>
+    </div>
+
+    <div id="employee_not_found" class="user_info">
+      <p>Employee Not Found</p>
+    </div>
+  </div>
+
+  <br> Customer:
+  <input type="text" name="customer"><br> Service Category:<br>
+  <input type="radio" name="servicecategory" value="Parts Request/Fulfillment">Parts Request/Fulfillment<br>
+  <input type="radio" name="servicecategory" value="Instrumentation/Equipment Loan">Instrumentation/Equipment Loan<br>
+  <input type="radio" name="servicecategory" value="3D Printer">3D Printer<br>
+  <input type="radio" name="servicecategory" value="Assitance">Assitance<br>
+  <input type="radio" name="servicecategory" value="Facilities">Facilities<br>
+  <input type="radio" name="servicecategory" value="Other">Other<br> Service Description:
+  <input type="text" name="description"><br>
 
   <?!= include('client.js'); ?>
 
