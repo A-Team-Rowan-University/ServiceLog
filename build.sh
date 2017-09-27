@@ -36,6 +36,6 @@ done
 cp src/server/* build/
 
 
-if [ $1 = "deploy" ]; then
+if [ "$1" = "deploy" ]; then
     gapps upload
 fi
