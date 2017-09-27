@@ -33,5 +33,11 @@ employee_id_input.addEventListener('input', function (e) {
     if(id.length >= ID_LENGTH) {
         console.log("ID entered");
         google.script.run.withSuccessHandler(show_user).getUserInfo(id, true);
+    }else{
+        //Hide info when text field is empty
+        employee_not_found_div.style.display = "none";
+        employee_found_div.style.display = "none";
     }
+
+    
 }, false);
