@@ -32,3 +32,7 @@ for /F %%I in ('dir /B/D src\client\css\*') do (
 )
 
 copy src\server\* build
+
+if "%1"=="deploy" (
+    gapps upload
+)
