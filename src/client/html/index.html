@@ -1,66 +1,137 @@
+<!DOCTYPE html>
 <html>
 
 <head>
   <base target="_top">
-  <?!= include('styles.css'); ?>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous">
+
+  <?!= include('styles.css'); ?>
 </head>
 
 <body>
 
-  ECE Resource Center Assistance Log
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Recouce Center Log</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <!--
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      -->
+      </ul>
+    </div>
+  </nav>
+
   <p id="testing">Testing</p>
 
-  <div>
-    <p class="label">Tech Office Employee:</p>
-    <input id="employee_id" class="input" type="text">
+  <div class="p-3 container-fluid bg-light rounded">
 
-    <div id="employee_found" class="user_info">
-      <p>Employee Found</p>
-      <p id="employee_name"></p>
-
-      <input id="customer_request_button" type="button" value="Customer Request">
-      <input id="log_in_button" type="button" value="Log In">
-      <input id="log_out_button" type="button" value="Log Out">
+    <div class="row justify-content-center">
+      <div class="col-6 center-block text-center bg-primary rounded">
+        <h1>Tech Office Employee:</h1>
+        <input id="employee_id" class="input" type="text">
+      </div>
     </div>
 
-    <div id="employee_not_found" class="user_info">
-      <p>Employee Not Found</p>
+    <div class="row justify-content-center">
+      <div id="employee_found" class="d-none col-6 center-block text-center bg-success rounded">
+        <h1 id="employee_name"></h1>
 
-      <p>Rowan Tech Office ID Registration</p>
-        <form>
-            First name:<br>
-                <input type="text" name="firstname"><br>
-            Last name:<br>
-                <input type="text" name="lastname"><br>
- 
-            Department:<br>
-                <input type="radio" name="department" value="ECE">ECE<br>
-                <input type="radio" name="department" value="BME">BME<br>
-                <input type="radio" name="department" value="ME">ME<br>
-                <input type="radio" name="department" value="CEE">CEE<br>
-                <input type="radio" name="department" value="CHE">CHE<br>
-                <input type="radio" name="department" value="Other">Other<br>
-        </form>
-
+        <div>
+          <input id="customer_request_button" type="button" value="Customer Request">
+        </div>
+        <div>
+          <input id="log_in_button" type="button" value="Log In">
+        </div>
+        <div>
+          <input id="log_out_button" type="button" value="Log Out">
+        </div>
+      </div>
     </div>
 
+    <div class="row justify-content-center">
+      <div id="employee_not_found" class="d-none col-6 center-block text-center bg-warning rounded">
+        <h1>Employee Not Found</h1>
+        <div class="container">
+
+          <!-- Name -->
+          <div class="row justify-content-center">
+            <h2>Name</h2>
+          </div>
+          <div class="row justify-content-center">
+            <input id="customer_name" type="text">
+          </div>
+
+          <!-- Email -->
+          <div class="row justify-content-center">
+            <h2>Email</h2>
+          </div>
+          <div class="row justify-content-center">
+            <input id="customer_email" type="text">
+          </div>
+
+          <!-- Department -->
+          <div class="row justify-content-center">
+            <h2>Department</h2>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col">
+              <label for="customer-department-ece">ECE</label>
+              <input id="customer-department-ece" type="radio" name="customer-department" value="ece">
+            </div>
+            <div class="col">
+              <label for="customer-department-bme">BME</label>
+              <input id="customer-department-bme" type="radio" name="customer-department" value="bme">
+            </div>
+            <div class="col">
+              <label for="customer-department-me">ME</label>
+              <input id="customer-department-me" type="radio" name="customer-department" value="me">
+            </div>
+            <div class="col">
+              <label for="customer-department-cee">CEE</label>
+              <input id="customer-department-cee" type="radio" name="customer-department" value="cee">
+            </div>
+            <div class="col">
+              <label for="customer-department-che">CHE</label>
+              <input id="customer-department-che" type="radio" name="customer-department" value="che">
+            </div>
+            <div class="col">
+              <label for="customer-department-other"><input id="customer-deptartment-other" type="text"></label>
+              <input id="customer-department-other" type="radio" name="customer-department" value="other">
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <input id="customer-submit" type="button" value="Submit New Customer">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div id="service_list">
-  <br> Customer:
-  <input type="text" name="customer"><br> Service Category:<br>
-  <input type="radio" name="servicecategory" value="Parts Request/Fulfillment">Parts Request/Fulfillment<br>
-  <input type="radio" name="servicecategory" value="Instrumentation/Equipment Loan">Instrumentation/Equipment Loan<br>
-  <input type="radio" name="servicecategory" value="3D Printer">3D Printer<br>
-  <input type="radio" name="servicecategory" value="Assitance">Assitance<br>
-  <input type="radio" name="servicecategory" value="Facilities">Facilities<br>
-  <input type="radio" name="servicecategory" value="Other">Other<br> Service Description:
-  <input type="text" name="description"><br>
-
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+    crossorigin="anonymous"></script>
   <?!= include('client.js'); ?>
-  </div>
 </body>
 
 </html>

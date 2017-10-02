@@ -3,7 +3,7 @@ var tesing = document.getElementById("testing");
 var result = google.script.run.getUserInfo("hello");
 testing.innerHTML = "Result: " + result;
 
-var ID_LENGTH = 5;
+var ID_LENGTH = 8;
 
 var employee_id_input = document.getElementById("employee_id");
 
@@ -17,12 +17,16 @@ function show_user(user) {
 
     if(user.type === "employee") {
         if(user.name !== null) {
-            employee_found_div.style.display = "block";
-            employee_not_found_div.style.display = "none";
+            employee_found_div.classList.remove("d-none");
+            employee_found_div.classList.add("d-block");
+            employee_not_found_div.classList.add("d-none");
+            employee_not_found_div.classList.remove("d-block");
             employee_name_p.innerHTML = user.name;
         } else {
-            employee_not_found_div.style.display = "block";
-            employee_found_div.style.display = "none";
+            employee_found_div.classList.add("d-none");
+            employee_found_div.classList.remove("d-block");
+            employee_not_found_div.classList.remove("d-none");
+            employee_not_found_div.classList.add("d-block");
         }
     }
 }
