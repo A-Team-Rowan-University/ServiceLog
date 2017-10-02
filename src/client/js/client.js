@@ -3,7 +3,7 @@ var tesing = document.getElementById("testing");
 var result = google.script.run.getUserInfo("hello");
 testing.innerHTML = "Result: " + result;
 
-var ID_LENGTH = 8;
+var ID_LENGTH = 5;
 
 var employee_id_input = document.getElementById("employee_id");
 
