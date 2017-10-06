@@ -53,3 +53,7 @@ function getUserInfo(user_id, is_employee) {
         return employee;
     }
 }
+
+function upload_customer_info (customer){
+    // TODO: Append customer information to google sheets
+}

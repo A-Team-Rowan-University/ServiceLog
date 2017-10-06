@@ -35,11 +35,6 @@ function show_user(user) {
     }
 }
 
-function upload_customer_info (customer){
-    console.log("Uploading customer information...");
-    // TODO: Append customer information to google sheets
-}
-
 employee_id_input.addEventListener('input', function (e) {
     console.log("Change:", employee_id.value);
     var id = employee_id_input.value;
@@ -67,6 +62,7 @@ customer_submit.addEventListener('click', function(e) {
     console.log("dept: ",customer.department);
 
     if(customer.name !== null && customer.email !== null && customer.department != null){
-        upload_customer_info(customer);
+        var result = google.script.run.upload_customer_info(customer);
+        console.log("Upload result: ", result);
     }
 }, false);

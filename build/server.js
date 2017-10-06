@@ -53,3 +53,9 @@ function getUserInfo(user_id, is_employee) {
         return employee;
     }
 }
+
+function upload_customer_info (customer){
+    console.log("Uploading customer information...");
+    // TODO: Append customer information to google sheets
+    Logger.log("Uploaded");
+}
