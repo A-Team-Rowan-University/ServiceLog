@@ -12,6 +12,10 @@ var employee_found_div = document.getElementById("employee_found");
 var employee_not_found_div = document.getElementById("employee_not_found");
 var employee_name_p = document.getElementById("employee_name");
 
+var customer_name_input = document.getElementById("customer_name");
+var customer_email_input = document.getElementById("customer_email");
+var customer_submit = document.getElementById("customer-submit");
+
 function show_user(user) {
     console.log("Showing Employee: ");
     console.log(user);
@@ -32,6 +36,11 @@ function show_user(user) {
     }
 }
 
+function upload_customer_info (customer){
+    console.log("Uploading customer information...");
+    // TODO: Append customer information to google sheets
+}
+
 employee_id_input.addEventListener('input', function (e) {
     console.log("Change:", employee_id.value);
     var id = employee_id_input.value;
@@ -45,6 +54,22 @@ employee_id_input.addEventListener('input', function (e) {
     }
 
     
+}, false);
+
+customer_submit.addEventListener('click', function(e) {
+    console.log("customer submited");
+    var customer = {}
+    customer.name = customer_name_input.value;
+    customer.email= customer_email_input.value;
+    customer.department = $("#customer-department-div input:radio:checked").val();
+
+    console.log("name: ",customer.name);
+    console.log("email: ",customer.email);
+    console.log("dept: ",customer.department);
+
+    if(customer.name !== null && customer.email !== null && customer.department != null){
+        upload_customer_info(customer);
+    }
 }, false);
  </script>
 
