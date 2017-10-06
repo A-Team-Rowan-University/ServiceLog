@@ -11,7 +11,6 @@ var employeeSheet = userSpreadsheet.getSheetByName("Employees");
 var employeeRange = employeeSheet.getRange(2, 1, employeeSheet.getLastRow(), employeeSheet.getLastColumn());
 
 var customerSheet = userSpreadsheet.getSheetByName("Customers");
-var customerRange = customerSheet.getRange(2, 1, customerSheet.getLastRow(), customerSheet.getLastColumn());
 
 function log(e) {
     Logger.log(e);
@@ -34,6 +33,7 @@ function getUserInfo(user_id, is_employee) {
         Logger.log("Employee");
 
         var employee = {
+            card_id: null,
             name: null,
             email: null,
             type: "employee",
@@ -47,13 +47,29 @@ function getUserInfo(user_id, is_employee) {
             if(row[0] === user_id) {
                 employee.name = row[1];
                 employee.email = row[2];
-            }
+3            }
         }
-
         return employee;
     }
 }
 
 function upload_customer_info (customer){
-    // TODO: Append customer information to google sheets
+    var first_empty_row = function (){
+        var spr = customerSheet;
+        var column = spr.getRange('A:A');
+        var values = column.getValues(); // get all data in one call
+        var ct = 0;
+        while ( values[ct][0] != "" ) {
+            ct++;
+        }
+            return (ct + 1);
+        };
+    values= [
+                [customer.card_id,
+                 customer.name,
+                 customer.department,
+                 customer.email]
+            ];
+    //throw first_empty_row;
+    var request = customerSheet.getRange(first_empty_row(), 1, 1, 4).setValues(values);
 }
