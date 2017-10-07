@@ -9,6 +9,7 @@ var id_input = document.getElementById("id_input");
 
 var employee_found_div = document.getElementById("employee_found");
 var employee_not_found_div = document.getElementById("employee_not_found");
+var customer_request_div = document.getElementById("customer_request_div");
 var employee_name_p = document.getElementById("employee_name");
 
 var customer_name_input = document.getElementById("customer_name");
@@ -79,6 +80,7 @@ id_input.addEventListener('input', function (e) {
     }
 }, false);
 
+
 customer_submit.addEventListener('click', function(e) {
     console.log("customer submited");
     var customer = {}
@@ -112,4 +114,19 @@ employee_logout_submit.addEventListener("click", function(e){
     employee_found_div.classList.remove("d-block");
     employee_not_found_div.classList.add("d-none");
     employee_not_found_div.classList.remove("d-block");
+}, false);
+
+customer_request_submit.addEventListener("click", function(e){
+    employee_not_found_div.style.display = "none";
+    employee_found_div.style.display = "none";
+    employee_login_submit.style.visibility = "visible";
+    employee_logout_submit.style.visibility = "hidden";
+    customer_request_submit.style.visibility = "hidden";
+    employee_found_div.classList.add("d-none");
+    employee_found_div.classList.remove("d-block");
+    employee_not_found_div.classList.add("d-none");
+    employee_not_found_div.classList.remove("d-block");
+    customer_request_div.style.visibility = "visible";
+    customer_request_div.classList.add("d-block");
+    customer_request_div.classList.remove("d-remove");
 }, false);
