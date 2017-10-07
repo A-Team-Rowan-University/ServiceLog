@@ -12,6 +12,7 @@ var employeeRange = employeeSheet.getRange(2, 1, employeeSheet.getLastRow(), emp
 
 var customerSheet = userSpreadsheet.getSheetByName("Customers");
 
+
 function log(e) {
     Logger.log(e);
 }
@@ -44,10 +45,10 @@ function getUserInfo(user_id, is_employee) {
         for(var i = 0; i < len; i++) {
             var row = values[i]
             Logger.log(row[0]);
-            if(row[0] === user_id) {
+            if(user_id != "" && row[0] === user_id) {
                 employee.name = row[1];
                 employee.email = row[2];
-3            }
+            }
         }
         return employee;
     }

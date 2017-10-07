@@ -5,7 +5,7 @@ testing.innerHTML = "Result: " + result;
 
 var ID_LENGTH = 8;
 
-var employee_id_input = document.getElementById("employee_id");
+var id_input = document.getElementById("id_input");
 
 var employee_found_div = document.getElementById("employee_found");
 var employee_not_found_div = document.getElementById("employee_not_found");
@@ -15,39 +15,68 @@ var customer_name_input = document.getElementById("customer_name");
 var customer_email_input = document.getElementById("customer_email");
 var customer_submit = document.getElementById("customer-submit");
 
+var employee_login_submit = document.getElementById("log_in_button");
+var employee_logout_submit = document.getElementById("log_out_button");
+var customer_request_submit = document.getElementById("customer_request_button");
+
+var employee_active;
 function show_user(user) {
-    console.log("Showing Employee: ");
-    console.log(user);
 
     if(user.type === "employee") {
-        if(user.name !== null) {
+        console.log("Showing Employee: ");
+        console.log(user);
+        if(user.name) {
+            console.log("Employee name: ", user.name);
             employee_found_div.classList.remove("d-none");
             employee_found_div.classList.add("d-block");
             employee_not_found_div.classList.add("d-none");
             employee_not_found_div.classList.remove("d-block");
+            if(employee_active){
+                employee_login_submit.style.visibility = "hidden";
+                employee_logout_submit.style.visibility = "visible";
+                customer_request_submit.style.visibility = "visible";
+            }else{
+                employee_login_submit.style.visibility = "visible";
+                employee_logout_submit.style.visibility = "hidden";
+                customer_request_submit.style.visibility = "hidden";
+            }
             employee_name_p.innerHTML = user.name;
         } else {
             employee_found_div.classList.add("d-none");
             employee_found_div.classList.remove("d-block");
             employee_not_found_div.classList.remove("d-none");
             employee_not_found_div.classList.add("d-block");
+            employee_login_submit.style.visibility = "hidden";
+            employee_logout_submit.style.visibility = "visible";
+            customer_request_submit.style.visibility = "visible";
         }
     }
 }
 
-employee_id_input.addEventListener('input', function (e) {
-    console.log("Change:", employee_id.value);
-    var id = employee_id_input.value;
-    if(id.length >= ID_LENGTH) {
-        console.log("ID entered");
-        google.script.run.withSuccessHandler(show_user).getUserInfo(id, true);
-    }else{
+function set_employee_active(employee){
+    employee_active = employee;
+    console.log("Active Employee = ", employee_active);
+    show_user(employee);
+}
+
+employee_login_submit.addEventListener('click', function (e) {
+    var id = id_input.value;
+    var employee_active = google.script.run.withSuccessHandler(set_employee_active).getUserInfo(id, true);
+}, false);
+
+id_input.addEventListener('input', function (e) {
+    if(!employee_active){
+        console.log("Change:", id_input.value);
+        var id = id_input.value;
         //Hide info when text field is empty
         employee_not_found_div.style.display = "none";
         employee_found_div.style.display = "none";
+        var employee = google.script.run.withSuccessHandler(show_user).getUserInfo(id, true);
+        console.log("Employee = ", employee);
+        if(id.length >= ID_LENGTH) {
+            console.log("ID entered");
+        }
     }
-
-    
 }, false);
 
 customer_submit.addEventListener('click', function(e) {
@@ -65,4 +94,22 @@ customer_submit.addEventListener('click', function(e) {
         var result = google.script.run.upload_customer_info(customer);
         console.log("Upload result: ", result);
     }
+}, false);
+
+employee_logout_submit.addEventListener("click", function(e){
+    if(employee_active)
+        employee_active = null;
+    else
+        throw "ERR: No employee is signed in";
+    id_input.value = "";
+    //Hide info when text field is empty
+    employee_not_found_div.style.display = "none";
+    employee_found_div.style.display = "none";
+    employee_login_submit.style.visibility = "visible";
+    employee_logout_submit.style.visibility = "hidden";
+    customer_request_submit.style.visibility = "hidden";
+    employee_found_div.classList.add("d-none");
+    employee_found_div.classList.remove("d-block");
+    employee_not_found_div.classList.add("d-none");
+    employee_not_found_div.classList.remove("d-block");
 }, false);
