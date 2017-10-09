@@ -1,14 +1,11 @@
 
 var ID_LENGTH = 8;
 
-<<<<<<< HEAD
 var id_input = document.getElementById("id_input");
 
 var id_input_div = document.getElementById("id_input_div");
-=======
 var employee_card = document.getElementById("employee_card");
 var employee_card_input = document.getElementById("employee_card_input");
->>>>>>> refs/remotes/origin/dev
 var employee_found_div = document.getElementById("employee_found");
 var employee_not_found_div = document.getElementById("employee_not_found");
 var employee_name_p = document.getElementById("employee_name");
@@ -31,7 +28,6 @@ var customer_request_submit = document.getElementById("customer_request_button")
 //var employee_active;
 function show_user(user) {
 
-<<<<<<< HEAD
     if(user.type === "employee") {
         //console.log("Showing Employee: ");
         //console.log(user);
@@ -73,7 +69,6 @@ function show_user(user) {
             showElements([
                 employee_not_found_div,
             ]);
-=======
     if (user.type === "employee") {
         console.log("Showing Employee: ");
         console.log(user);
@@ -100,7 +95,6 @@ function show_user(user) {
             // Show employee not found div
             employee_not_found_div.classList.remove("d-none");
             employee_not_found_div.classList.add("d-block");
->>>>>>> refs/remotes/origin/dev
         }
     } else {
         console.log("Showing Customer: ");
@@ -142,7 +136,6 @@ employee_card_input.addEventListener('input', function (e) {
     }
 }, false);
 
-<<<<<<< HEAD
 id_input.addEventListener('input', function (e) {
     if(!employee_active){
         console.log("Change:", id_input.value);
@@ -160,7 +153,6 @@ id_input.addEventListener('input', function (e) {
         if(id.length >= ID_LENGTH) {
             console.log("ID entered");
         }
-=======
 //Customer card search
 customer_card_input.addEventListener('input', function (e) {
     var id = customer_card_input.value;
@@ -170,7 +162,6 @@ customer_card_input.addEventListener('input', function (e) {
     if (id.length >= ID_LENGTH) {
         console.log("ID entered");
         google.script.run.withSuccessHandler(show_user).getUserInfo(id, false);
->>>>>>> refs/remotes/origin/dev
     }
 }, false);
 
@@ -199,7 +190,6 @@ customer_submit.addEventListener('click', function (e) {
     }
 }, false);
 
-<<<<<<< HEAD
 employee_logout_submit.addEventListener("click", function(e){
     if(employee_active)
         employee_active = null;
@@ -245,7 +235,6 @@ function showElements(elements){
         console.log(element);
     }
 }
-=======
 // Employee login
 employee_login_submit.addEventListener('click', function (e) {
     // Just need to send request to worker log
@@ -255,4 +244,3 @@ employee_login_submit.addEventListener('click', function (e) {
 employee_logout_submit.addEventListener("click", function (e) {
     // Just need to send request to worker log
 }, false);
->>>>>>> refs/remotes/origin/dev
