@@ -11,6 +11,7 @@ var employeeSheet = userSpreadsheet.getSheetByName("Employees");
 var employeeRange = employeeSheet.getRange(2, 1, employeeSheet.getLastRow(), employeeSheet.getLastColumn());
 
 var customerSheet = userSpreadsheet.getSheetByName("Customers");
+var customerRange = customerSheet.getRange(2, 1, customerSheet.getLastRow(), customerSheet.getLastColumn());
 
 
 function log(e) {
@@ -51,6 +52,27 @@ function getUserInfo(user_id, is_employee) {
             }
         }
         return employee;
+    } else {
+        Logger.log("Customer");
+
+        var customer = {
+            card_id: null,
+            name: null,
+            email: null,
+            type: "customer",
+        }
+
+        var values = customerRange.getValues();
+        var len = values.length;
+        for(var i = 0; i < len; i++) {
+            var row = values[i]
+            Logger.log(row[0]);
+            if(user_id != "" && row[0] === user_id) {
+                customer.name = row[1];
+                customer.email = row[2];
+            }
+        }
+        return customer;
     }
 }
 
