@@ -7,6 +7,7 @@ var ID_LENGTH = 8;
 
 var id_input = document.getElementById("id_input");
 
+var id_input_div = document.getElementById("id_input_div");
 var employee_found_div = document.getElementById("employee_found");
 var employee_not_found_div = document.getElementById("employee_not_found");
 var customer_request_div = document.getElementById("customer_request_div");
@@ -24,32 +25,46 @@ var employee_active;
 function show_user(user) {
 
     if(user.type === "employee") {
-        console.log("Showing Employee: ");
-        console.log(user);
+        //console.log("Showing Employee: ");
+        //console.log(user);
         if(user.name) {
-            console.log("Employee name: ", user.name);
-            employee_found_div.classList.remove("d-none");
-            employee_found_div.classList.add("d-block");
-            employee_not_found_div.classList.add("d-none");
-            employee_not_found_div.classList.remove("d-block");
+            //console.log("Employee name: ", user.name);
+            showElements([
+                employee_found_div
+            ]);
+            hideElements([
+                employee_not_found_div
+            ]);
             if(employee_active){
-                employee_login_submit.style.visibility = "hidden";
-                employee_logout_submit.style.visibility = "visible";
-                customer_request_submit.style.visibility = "visible";
+                showElements([
+                    employee_logout_submit,
+                    customer_request_submit
+                ]);
+
+                hideElements([
+                    employee_login_submit,
+                ]);
             }else{
-                employee_login_submit.style.visibility = "visible";
-                employee_logout_submit.style.visibility = "hidden";
-                customer_request_submit.style.visibility = "hidden";
+                showElements([
+                    employee_login_submit
+                ]);
+                hideElements([
+                    employee_logout_submit,
+                    customer_request_submit
+                ]);
             }
             employee_name_p.innerHTML = user.name;
         } else {
-            employee_found_div.classList.add("d-none");
-            employee_found_div.classList.remove("d-block");
-            employee_not_found_div.classList.remove("d-none");
-            employee_not_found_div.classList.add("d-block");
-            employee_login_submit.style.visibility = "hidden";
-            employee_logout_submit.style.visibility = "visible";
-            customer_request_submit.style.visibility = "visible";
+            hideElements([
+                employee_found_div,
+                customer_request_div,
+                employee_login_submit,
+                employee_logout_submit,
+                customer_request_submit
+            ]);
+            showElements([
+                employee_not_found_div,
+            ]);
         }
     }
 }
@@ -70,8 +85,13 @@ id_input.addEventListener('input', function (e) {
         console.log("Change:", id_input.value);
         var id = id_input.value;
         //Hide info when text field is empty
-        employee_not_found_div.style.display = "none";
-        employee_found_div.style.display = "none";
+        hideElements([
+            employee_found_div
+        ]);
+
+        showElements([
+            employee_not_found_div
+        ]);
         var employee = google.script.run.withSuccessHandler(show_user).getUserInfo(id, true);
         console.log("Employee = ", employee);
         if(id.length >= ID_LENGTH) {
@@ -105,28 +125,41 @@ employee_logout_submit.addEventListener("click", function(e){
         throw "ERR: No employee is signed in";
     id_input.value = "";
     //Hide info when text field is empty
-    employee_not_found_div.style.display = "none";
-    employee_found_div.style.display = "none";
-    employee_login_submit.style.visibility = "visible";
-    employee_logout_submit.style.visibility = "hidden";
-    customer_request_submit.style.visibility = "hidden";
-    employee_found_div.classList.add("d-none");
-    employee_found_div.classList.remove("d-block");
-    employee_not_found_div.classList.add("d-none");
-    employee_not_found_div.classList.remove("d-block");
+    hideElements([
+        employee_not_found_div,
+        employee_found_div,
+        employee_login_submit,
+        employee_logout_submit,
+        customer_request_submit
+    ]);
 }, false);
 
 customer_request_submit.addEventListener("click", function(e){
-    employee_not_found_div.style.display = "none";
-    employee_found_div.style.display = "none";
-    employee_login_submit.style.visibility = "visible";
-    employee_logout_submit.style.visibility = "hidden";
-    customer_request_submit.style.visibility = "hidden";
-    employee_found_div.classList.add("d-none");
-    employee_found_div.classList.remove("d-block");
-    employee_not_found_div.classList.add("d-none");
-    employee_not_found_div.classList.remove("d-block");
-    customer_request_div.style.visibility = "visible";
-    customer_request_div.classList.add("d-block");
-    customer_request_div.classList.remove("d-remove");
+     hideElements([
+        employee_found_div,
+        employee_logout_submit
+    ]);
 }, false);
+
+function hideElements(elements){
+    console.log("hide elements called");
+    for(var i = 0; i < elements.length; i++){
+        var element = elements[i];
+        console.log(element);
+        element.style.display = "none";
+        element.classList.add("d-none");
+        element.classList.remove("d-block");
+        console.log(element);
+    }
+}
+
+function showElements(elements){
+    console.log("show elements called");
+    for(var i = 0; i < elements.length; i++){
+        var element = elements[i];
+        element.style.display = "visible";
+        element.classList.add("d-block");
+        element.classList.remove("d-none");
+        console.log(element);
+    }
+}
