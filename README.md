@@ -43,9 +43,9 @@ If customer request:
  - Finish transaction
 
 If log in:
- - Log (Sling integration?)
+ - Log with Worker Log
  - Finish transaction
 
 If log out:
- - Log (Sling integration?)
+ - Log with Worker Log
  - Finish transaction
