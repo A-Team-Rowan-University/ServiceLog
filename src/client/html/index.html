@@ -37,17 +37,22 @@
     </div>
   </nav>
 
-  <p id="testing">Testing</p>
-
   <div class="p-3 container-fluid bg-light rounded">
 
+<<<<<<< HEAD
     <div id="id_input_div" class="row justify-content-center">
       <div class="col-6 center-block text-center bg-primary rounded">
+=======
+    <!-- Employee card input -->
+    <div class="row justify-content-center">
+      <div id="employee_card" class="col-6 center-block text-center bg-primary rounded">
+>>>>>>> refs/remotes/origin/dev
         <h1>Tech Office Employee:</h1>
-        <input id="id_input" class="input" type="text">
+        <input id="employee_card_input" class="input" type="text">
       </div>
     </div>
 
+    <!-- Employee Found -->
     <div class="row justify-content-center">
       <div id="employee_found" class="d-none col-6 center-block text-center bg-success rounded">
         <h1 id="employee_name"></h1>
@@ -64,14 +69,42 @@
       </div>
     </div>
 
+    <!-- Employee Not Found -->
     <div class="row justify-content-center">
       <div id="employee_not_found" class="d-none col-6 center-block text-center bg-warning rounded">
-        <h1>Employee Not Found</h1>
-        </div>
+        <h1>Employee Card ID Not Found</h1>
       </div>
-    <div class="row justify-content-center">
-        <div id="customer_request_div" class="d-none col-6 center-block text-center bg-warning rounded">
+    </div>
 
+
+    <!-- Customer card input -->
+    <div class="row justify-content-center">
+      <div id="customer_card" class="d-none col-6 center-block text-center bg-primary rounded">
+        <h1>Customer:</h1>
+        <input id="customer_card_input" class="input" type="text">
+      </div>
+    </div>
+
+    <!-- Customer Found -->
+    <div class="row justify-content-center">
+      <div id="customer_found" class="d-none col-6 center-block text-center bg-success rounded">
+        <h1 id="customer_name"></h1>
+      </div>
+    </div>
+
+    <!-- Customer not found -->
+    <div class="row justify-content-center">
+      <div id="customer_not_found" class="d-none col-6 center-block text-center bg-warning rounded">
+        <h1>Customer Card ID Not Found</h1>
+        <p>Customer Email:</p>
+        <input id="customer_email" class="input" type="text">
+        <input id="customer_email_submit" class="input" type="button" value="Search">
+      </div>
+    </div>
+
+    <!-- Customer Request -->
+    <div class="row justify-content-center">
+      <div id="customer_request_div" class="d-none col-6 center-block text-center bg-warning rounded">
         <div class="container">
 
           <!-- Name -->
