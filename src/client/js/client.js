@@ -1,9 +1,7 @@
 
 var ID_LENGTH = 8;
 
-var id_input = document.getElementById("id_input");
-
-var id_input_div = document.getElementById("id_input_div");
+var id_input_div = document.getElementById("id_input");
 var employee_card = document.getElementById("employee_card");
 var employee_card_input = document.getElementById("employee_card_input");
 var employee_found_div = document.getElementById("employee_found");
@@ -136,10 +134,10 @@ employee_card_input.addEventListener('input', function (e) {
     }
 }, false);
 
-id_input.addEventListener('input', function (e) {
+employee_card_input.addEventListener('input', function (e) {
     if(!employee_active){
-        console.log("Change:", id_input.value);
-        var id = id_input.value;
+        console.log("Change:", employee_card_input.value);
+        var id = employee_card_input.value;
         //Hide info when text field is empty
         hideElements([
             employee_found_div
@@ -195,7 +193,7 @@ employee_logout_submit.addEventListener("click", function(e){
         employee_active = null;
     else
         throw "ERR: No employee is signed in";
-    id_input.value = "";
+    employee_card_input.value = "";
     //Hide info when text field is empty
     hideElements([
         employee_not_found_div,
