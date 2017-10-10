@@ -25,48 +25,6 @@ var customer_request_submit = document.getElementById("customer_request_button")
 
 //var employee_active;
 function show_user(user) {
-
-    if(user.type === "employee") {
-        //console.log("Showing Employee: ");
-        //console.log(user);
-        if(user.name) {
-            //console.log("Employee name: ", user.name);
-            showElements([
-                employee_found_div
-            ]);
-            hideElements([
-                employee_not_found_div
-            ]);
-            if(employee_active){
-                showElements([
-                    employee_logout_submit,
-                    customer_request_submit
-                ]);
-
-                hideElements([
-                    employee_login_submit,
-                ]);
-            }else{
-                showElements([
-                    employee_login_submit
-                ]);
-                hideElements([
-                    employee_logout_submit,
-                    customer_request_submit
-                ]);
-            }
-            employee_name_p.innerHTML = user.name;
-        } else {
-            hideElements([
-                employee_found_div,
-                customer_request_div,
-                employee_login_submit,
-                employee_logout_submit,
-                customer_request_submit
-            ]);
-            showElements([
-                employee_not_found_div,
-            ]);
     if (user.type === "employee") {
         console.log("Showing Employee: ");
         console.log(user);
@@ -134,23 +92,6 @@ employee_card_input.addEventListener('input', function (e) {
     }
 }, false);
 
-employee_card_input.addEventListener('input', function (e) {
-    if(!employee_active){
-        console.log("Change:", employee_card_input.value);
-        var id = employee_card_input.value;
-        //Hide info when text field is empty
-        hideElements([
-            employee_found_div
-        ]);
-
-        showElements([
-            employee_not_found_div
-        ]);
-        var employee = google.script.run.withSuccessHandler(show_user).getUserInfo(id, true);
-        console.log("Employee = ", employee);
-        if(id.length >= ID_LENGTH) {
-            console.log("ID entered");
-        }
 //Customer card search
 customer_card_input.addEventListener('input', function (e) {
     var id = customer_card_input.value;
@@ -188,51 +129,6 @@ customer_submit.addEventListener('click', function (e) {
     }
 }, false);
 
-employee_logout_submit.addEventListener("click", function(e){
-    if(employee_active)
-        employee_active = null;
-    else
-        throw "ERR: No employee is signed in";
-    employee_card_input.value = "";
-    //Hide info when text field is empty
-    hideElements([
-        employee_not_found_div,
-        employee_found_div,
-        employee_login_submit,
-        employee_logout_submit,
-        customer_request_submit
-    ]);
-}, false);
-
-customer_request_submit.addEventListener("click", function(e){
-     hideElements([
-        employee_found_div,
-        employee_logout_submit
-    ]);
-}, false);
-
-function hideElements(elements){
-    console.log("hide elements called");
-    for(var i = 0; i < elements.length; i++){
-        var element = elements[i];
-        console.log(element);
-        element.style.display = "none";
-        element.classList.add("d-none");
-        element.classList.remove("d-block");
-        console.log(element);
-    }
-}
-
-function showElements(elements){
-    console.log("show elements called");
-    for(var i = 0; i < elements.length; i++){
-        var element = elements[i];
-        element.style.display = "visible";
-        element.classList.add("d-block");
-        element.classList.remove("d-none");
-        console.log(element);
-    }
-}
 // Employee login
 employee_login_submit.addEventListener('click', function (e) {
     // Just need to send request to worker log
