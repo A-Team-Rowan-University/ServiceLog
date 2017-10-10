@@ -80,6 +80,29 @@ function show_user(user) {
     }
 }
 
+function hideElements(elements){
+    console.log("hide elements called");
+    for(var i = 0; i < elements.length; i++){
+        var element = elements[i];
+        console.log(element);
+        element.style.display = "none";
+        element.classList.add("d-none");
+        element.classList.remove("d-block");
+        console.log(element);
+    }
+}
+
+function showElements(elements){
+    console.log("show elements called");
+    for(var i = 0; i < elements.length; i++){
+        var element = elements[i];
+        element.style.display = "visible";
+        element.classList.add("d-block");
+        element.classList.remove("d-none");
+        console.log(element);
+    }
+}
+
 // Employee card search
 employee_card_input.addEventListener('input', function (e) {
     var id = employee_card_input.value;
