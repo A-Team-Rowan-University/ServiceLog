@@ -29,53 +29,68 @@ function show_user(user) {
         console.log("Showing Employee: ");
         console.log(user);
         if (user.name) {
-            console.log("Employee name: ", user.name);
-            // Show employee found div
-            employee_found_div.classList.remove("d-none");
-            employee_found_div.classList.add("d-block");
+            showElements([
+                employee_found_div
+            ]);
+            hideElements([
+                employee_not_found_div
+            ]);
+            if(employee_active){
+                showElements([
+                    employee_logout_submit,
+                    customer_request_submit
+                ]);
 
-            // Hide employee not found div
-            employee_not_found_div.classList.add("d-none");
-            employee_not_found_div.classList.remove("d-block");
-
-            // We do not need to keep track of 'active' employees
-            // Any employee is able to customer request
-
-            // Update with employee info
+                hideElements([
+                    employee_login_submit,
+                ]);
+            }else{
+                showElements([
+                    employee_login_submit
+                ]);
+                hideElements([
+                    employee_logout_submit,
+                    customer_request_submit
+                ]);
+            }
             employee_name_p.innerHTML = user.name;
         } else {
-            // Hide employee found div
-            employee_found_div.classList.add("d-none");
-            employee_found_div.classList.remove("d-block");
-
-            // Show employee not found div
-            employee_not_found_div.classList.remove("d-none");
-            employee_not_found_div.classList.add("d-block");
+            hideElements([
+                employee_found_div,
+                customer_request_div,
+                employee_login_submit,
+                employee_logout_submit,
+                customer_request_submit
+            ]);
+            showElements([
+                employee_not_found_div,
+            ]);
         }
     } else {
         console.log("Showing Customer: ");
         console.log(user);
         if (user.name) {
             console.log("Customer name: ", user.name);
-            // Show customer found div
-            customer_found_div.classList.remove("d-none");
-            customer_found_div.classList.add("d-block");
 
-            // Hide customer not found div
-            customer_not_found_div.classList.add("d-none");
-            customer_not_found_div.classList.remove("d-block");
+            showElements([
+                customer_found_div
+            ]);
+
+            hideElements([
+                customer_not_found_div
+            ]);
 
             // Update with customer info
             customer_name_p.innerHTML = user.name;
 
         } else {
-            // Hide customer found div
-            customer_found_div.classList.add("d-none");
-            customer_found_div.classList.remove("d-block");
+            showElements([
+                customer_not_found_div
+            ]);
 
-            // Show customer not found div
-            customer_not_found_div.classList.remove("d-none");
-            customer_not_found_div.classList.add("d-block");
+            hideElements([
+                customer_found_div
+            ]);
         }
     }
 }
@@ -107,8 +122,10 @@ function showElements(elements){
 employee_card_input.addEventListener('input', function (e) {
     var id = employee_card_input.value;
     //Hide info when text field is empty
-    employee_not_found_div.style.display = "none";
-    employee_found_div.style.display = "none";
+    hideElements([
+        employee_found_div,
+        employee_not_found_div
+    ]);
     if (id.length >= ID_LENGTH) {
         console.log("ID entered");
         google.script.run.withSuccessHandler(show_user).getUserInfo(id, true);
@@ -119,8 +136,10 @@ employee_card_input.addEventListener('input', function (e) {
 customer_card_input.addEventListener('input', function (e) {
     var id = customer_card_input.value;
     //Hide info when text field is empty
-    customer_not_found_div.style.display = "none";
-    customer_found_div.style.display = "none";
+    hideElements([
+        customer_found_div,
+        customer_not_found_div
+    ]);
     if (id.length >= ID_LENGTH) {
         console.log("ID entered");
         google.script.run.withSuccessHandler(show_user).getUserInfo(id, false);
@@ -129,8 +148,9 @@ customer_card_input.addEventListener('input', function (e) {
 
 customer_request_submit.addEventListener('click', function (e) {
     // Show customer card input
-    customer_card.classList.add("d-block");
-    customer_card.classList.remove("d-none");
+    showElements([
+        customer_card
+    ]);
 }, false);
 
 // 
