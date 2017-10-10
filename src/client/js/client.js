@@ -173,7 +173,7 @@ customer_request_submit.addEventListener('click', function (e) {
 customer_submit.addEventListener('click', function (e) {
     // Search database of all people
     console.log("customer submited");
-    var customer = {}
+    var customer = {};
     customer.name = customer_name_input.value;
     customer.email = customer_email_input.value;
     customer.department = $("#customer-department-div input:radio:checked").val();
