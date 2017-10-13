@@ -35,7 +35,7 @@ function getUserInfo(user_id, is_employee) {
         Logger.log("Employee");
 
         var employee = {
-            card_id: null,
+            card_id: user_id,
             name: null,
             email: null,
             type: "employee",
@@ -56,8 +56,9 @@ function getUserInfo(user_id, is_employee) {
         Logger.log("Customer");
 
         var customer = {
-            card_id: null,
+            card_id: user_id,
             name: null,
+            department: null,
             email: null,
             type: "customer",
         }
@@ -69,11 +70,39 @@ function getUserInfo(user_id, is_employee) {
             Logger.log(row[0]);
             if(user_id != "" && row[0] === user_id) {
                 customer.name = row[1];
-                customer.email = row[2];
+                customer.department = row[2];
+                customer.email = row[3];
             }
         }
         return customer;
     }
+}
+
+function new_customer(card_id, email) {
+    Logger.log("New Customer!");
+    Logger.log(card_id);
+    Logger.log(email);
+
+    var customer = {
+        card_id: card_id,
+        name: null,
+        department: null,
+        email: email,
+        type: "customer",
+    }
+
+    var values = customerRange.getValues();
+    var len = values.length;
+    for(var i = 0; i < len; i++) {
+        var row = values[i]
+        Logger.log(row[0]);
+        if(email != "" && row[3] === email) {
+            customer.name = row[1];
+            customer.department = row[2];
+            customerSheet.getRange(i+2, 1);
+        }
+    }
+    return customer;
 }
 
 function upload_customer_info (customer){
