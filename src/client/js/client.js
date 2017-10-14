@@ -6,7 +6,11 @@ var employee_card = document.getElementById("employee_card");
 var employee_card_input = document.getElementById("employee_card_input");
 var employee_found_div = document.getElementById("employee_found");
 var employee_not_found_div = document.getElementById("employee_not_found");
-var employee_name_p = document.getElementById("employee_name");
+var employee_name = document.getElementById("employee_name");
+
+var employee_login_submit = document.getElementById("log_in_button");
+var employee_logout_submit = document.getElementById("log_out_button");
+var customer_request_submit = document.getElementById("customer_request_button");
 
 var customer_card = document.getElementById("customer_card");
 var customer_card_input = document.getElementById("customer_card_input");
@@ -15,15 +19,7 @@ var customer_not_found_div = document.getElementById("customer_not_found");
 var customer_email = document.getElementById("customer_email");
 var customer_email_submit = document.getElementById("customer_email_submit");
 var customer_email_not_found = document.getElementById("customer_email_not_found");
-var customer_name_p = document.getElementById("customer_name");
-var customer_request_div = document.getElementById("customer_request_div");
-
-var customer_name_input = document.getElementById("customer_name");
-var customer_submit = document.getElementById("customer-submit");
-
-var employee_login_submit = document.getElementById("log_in_button");
-var employee_logout_submit = document.getElementById("log_out_button");
-var customer_request_submit = document.getElementById("customer_request_button");
+var customer_name = document.getElementById("customer_name");
 
 employee_card_input.focus();
 
@@ -44,13 +40,12 @@ function show_user(user) {
                 customer_not_found_div,
                 customer_card
             ]);
-            employee_name_p.innerHTML = user.name;
+            employee_name.innerHTML = user.name;
         } else {
             hideElements([
                 employee_found_div,
                 customer_found_div,
                 customer_not_found_div,
-                customer_request_div,
                 customer_card
             ]);
             showElements([
@@ -74,7 +69,7 @@ function show_user(user) {
             ]);
 
             // Update with customer info
-            customer_name_p.innerHTML = user.name;
+            customer_name.innerHTML = user.name;
 
         } else {
             if (user.search === "card"){

@@ -86,6 +86,15 @@
     <div class="row justify-content-center">
       <div id="customer_found" class="d-none col-6 center-block text-center bg-success rounded">
         <h1 id="customer_name"></h1>
+        <div>
+          <input id="parts_request_button" type="button" value="Parts Request">
+        </div>
+        <div>
+          <input id="equipment_loan_button" type="button" value="Equipment Loan">
+        </div>
+        <div>
+          <input id="equipment_return_button" type="button" value="Equipment Return">
+        </div>
       </div>
     </div>
 
@@ -106,65 +115,67 @@
       </div>
     </div>
 
-    <!-- Customer Request -->
+    <!-- Parts request -->
     <div class="row justify-content-center">
-      <div id="customer_request_div" class="d-none col-6 center-block text-center bg-warning rounded">
-        <div class="container">
-
-          <!-- Name -->
-          <div class="row justify-content-center">
-            <h2>Name</h2>
-          </div>
-          <div class="row justify-content-center">
-            <input id="customer_name" type="text">
-          </div>
-
-          <!-- Email -->
-          <div class="row justify-content-center">
-            <h2>Email</h2>
-          </div>
-          <div class="row justify-content-center">
-            <input id="customer_email" type="text">
-          </div>
-
-          <!-- Department -->
-          <div class="row justify-content-center">
-            <h2>Department</h2>
-          </div>
-          <div id="customer-department-div" class="row justify-content-center">
-            <div class="col">
-              <label for="customer-department-ece">ECE</label>
-              <input id="customer-department-ece" type="radio" name="customer-department" value="ece">
-            </div>
-            <div class="col">
-              <label for="customer-department-bme">BME</label>
-              <input id="customer-department-bme" type="radio" name="customer-department" value="bme">
-            </div>
-            <div class="col">
-              <label for="customer-department-me">ME</label>
-              <input id="customer-department-me" type="radio" name="customer-department" value="me">
-            </div>
-            <div class="col">
-              <label for="customer-department-cee">CEE</label>
-              <input id="customer-department-cee" type="radio" name="customer-department" value="cee">
-            </div>
-            <div class="col">
-              <label for="customer-department-che">CHE</label>
-              <input id="customer-department-che" type="radio" name="customer-department" value="che">
-            </div>
-            <div class="col">
-              <label for="customer-department-other"><input id="customer-deptartment-other" type="text"></label>
-              <input id="customer-department-other" type="radio" name="customer-department" value="other">
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <input id="customer-submit" type="button" value="Submit New Customer">
-          </div>
-        </div>
+      <div id="parts_request" class="d-none col-6 center-block text-center bg-primary rounded">
+        <h1>Parts Request:</h1>
+        <textarea id="parts_request_description"></textarea>
       </div>
     </div>
+
+
+    <!-- Parts request success -->
+    <div class="row justify-content-center">
+      <div id="parts_request_success" class="d-none col-6 center-block text-center bg-primary rounded">
+        <h1>Parts Request Sucessful!</h1>
+      </div>
+    </div>
+
+    <!-- Equipment loan -->
+    <div class="row justify-content-center">
+      <div id="equipment_loan" class="d-none col-6 center-block text-center bg-primary rounded">
+        <h1>Equipment Loan</h1>
+
+        <p>Equipment ID:</p>
+        <input id="equipment_loan_id" class="input" type="text">
+
+        <p>Equipment Location:</p>
+        <input id="equipment_loan_location" class="input" type="text">
+      </div>
+    </div>
+
+    <!-- Equipment return -->
+    <div class="row justify-content-center">
+      <div id="equipment_return" class="d-none col-6 center-block text-center bg-primary rounded">
+        <h1>Equipment Return:</h1>
+        <input id="equipment_return" class="input" type="text">
+      </div>
+    </div>
+
+    <!-- Equipment loan success -->
+    <div class="row justify-content-center">
+      <div id="equipment_loan_success" class="d-none col-6 center-block text-center bg-success rounded">
+        <h1>Equipment Load Successful!</h1>
+      </div>
+    </div>
+
+    <!-- Equipment return success -->
+    <div class="row justify-content-center">
+      <div id="equipment_return_success" class="d-none col-6 center-block text-center bg-success rounded">
+        <h1>Equipment Return Successful!</h1>
+      </div>
+    </div>
+    
+    <!-- Equipment not found -->
+    <div class="row justify-content-center">
+      <div id="equipment_not_found" class="d-none col-6 center-block text-center bg-danger rounded">
+        <h1>Equipment Not Found</h1>
+      </div>
+    </div>
+
   </div>
 
+  <!-- Bootstrap -->
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
