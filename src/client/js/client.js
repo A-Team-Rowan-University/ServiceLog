@@ -153,27 +153,6 @@ customer_email_submit.addEventListener('click', function (e) {
     google.script.run.withSuccessHandler(show_user).new_customer(card_id, email);
 }, false);
 
-/*
-// 
-customer_submit.addEventListener('click', function (e) {
-    // Search database of all people
-    console.log("customer submited");
-    var customer = {};
-    customer.name = customer_name_input.value;
-    customer.email = customer_email_input.value;
-    customer.department = $("#customer-department-div input:radio:checked").val();
-
-    console.log("name: ", customer.name);
-    console.log("email: ", customer.email);
-    console.log("dept: ", customer.department);
-
-    if (customer.name !== null && customer.email !== null && customer.department != null) {
-        var result = google.script.run.upload_customer_info(customer);
-        console.log("Upload result: ", result);
-    }
-}, false);
-*/
-
 // Employee login
 employee_login_submit.addEventListener('click', function (e) {
     // Just need to send request to worker log
