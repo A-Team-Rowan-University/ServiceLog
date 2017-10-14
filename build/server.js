@@ -39,6 +39,7 @@ function getUserInfo(user_id, is_employee) {
             name: null,
             email: null,
             type: "employee",
+            search: "card"
         }
 
         var values = employeeRange.getValues();
@@ -61,6 +62,7 @@ function getUserInfo(user_id, is_employee) {
             department: null,
             email: null,
             type: "customer",
+            search: "card"
         }
 
         var values = customerRange.getValues();
@@ -89,6 +91,7 @@ function new_customer(card_id, email) {
         department: null,
         email: email,
         type: "customer",
+        seach: "email",
     }
 
     var values = customerRange.getValues();

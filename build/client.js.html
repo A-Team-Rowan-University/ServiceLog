@@ -15,6 +15,7 @@ var customer_found_div = document.getElementById("customer_found");
 var customer_not_found_div = document.getElementById("customer_not_found");
 var customer_email = document.getElementById("customer_email");
 var customer_email_submit = document.getElementById("customer_email_submit");
+var customer_email_not_found = document.getElementById("customer_email_not_found");
 var customer_name_p = document.getElementById("customer_name");
 var customer_request_div = document.getElementById("customer_request_div");
 
@@ -69,20 +70,31 @@ function show_user(user) {
             ]);
 
             hideElements([
-                customer_not_found_div
+                customer_not_found_div,
+                customer_email_not_found
             ]);
 
             // Update with customer info
             customer_name_p.innerHTML = user.name;
 
         } else {
-            showElements([
-                customer_not_found_div
-            ]);
+            if (user.search === "card"){
+                showElements([
+                    customer_not_found_div
+                ]);
 
-            hideElements([
-                customer_found_div
-            ]);
+                hideElements([
+                    customer_found_div
+                ]);
+            } else {
+                showElements([
+                    customer_email_not_found
+                ]);
+
+                hideElements([
+                    customer_found_div
+                ]);
+            }
         }
     }
 }
@@ -97,6 +109,13 @@ customer_request_submit.addEventListener('click', function (e) {
     showElements([
         customer_card
     ]);
+
+    hideElements([
+        customer_not_found_div,
+        customer_email_not_found,
+        customer_found_div
+    ]);
+
 }, false);
 
 // Employee card search
@@ -119,7 +138,8 @@ customer_card_input.addEventListener('input', function (e) {
     //Hide info when text field is empty
     hideElements([
         customer_found_div,
-        customer_not_found_div
+        customer_not_found_div,
+        customer_email_not_found
     ]);
     if (id.length >= ID_LENGTH) {
         console.log("ID entered");
