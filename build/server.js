@@ -102,7 +102,7 @@ function new_customer(card_id, email) {
         if(email != "" && row[3] === email) {
             customer.name = row[1];
             customer.department = row[2];
-            customerSheet.getRange(i+2, 1);
+            customerSheet.getRange(i+2, 1).setValue(card_id);
         }
     }
     return customer;
