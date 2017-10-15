@@ -1,25 +1,61 @@
 
 var ID_LENGTH = 8;
 
-var id_input_div = document.getElementById("id_input");
+// Employee
 var employee_card = document.getElementById("employee_card");
 var employee_card_input = document.getElementById("employee_card_input");
+
 var employee_found_div = document.getElementById("employee_found");
-var employee_not_found_div = document.getElementById("employee_not_found");
 var employee_name = document.getElementById("employee_name");
 
+var employee_not_found_div = document.getElementById("employee_not_found");
+
+// Customer
 var employee_login_submit = document.getElementById("log_in_button");
 var employee_logout_submit = document.getElementById("log_out_button");
 var customer_request_submit = document.getElementById("customer_request_button");
 
 var customer_card = document.getElementById("customer_card");
 var customer_card_input = document.getElementById("customer_card_input");
+
 var customer_found_div = document.getElementById("customer_found");
+var customer_name = document.getElementById("customer_name");
+
 var customer_not_found_div = document.getElementById("customer_not_found");
+
 var customer_email = document.getElementById("customer_email");
 var customer_email_submit = document.getElementById("customer_email_submit");
+
 var customer_email_not_found = document.getElementById("customer_email_not_found");
-var customer_name = document.getElementById("customer_name");
+
+// Parts request
+var parts_request_button = document.getElementById("parts_request_button");
+
+var parts_request = document.getElementById("parts_request");
+var parts_request_description = document.getElementById("parts_request_description");
+
+var parts_request_submit = document.getElementById("parts_request_submit");
+
+var parts_request_success = document.getElementById("parts_request_success");
+
+// Equipment loan
+var equipment_loan_button = document.getElementById("equipment_loan_button");
+
+var equipment_loan = document.getElementById("equipment_loan");
+var equipment_loan_id = document.getElementById("equipment_loan_id");
+var equipment_loan_location = document.getElementById("equipment_loan_location");
+
+var equipment_loan_success = document.getElementById("equipment_loan_success");
+
+// Equipment return
+var equipment_return = document.getElementById("equipment_success_success");
+
+var equipment_return = document.getElementById("equipment_return");
+var equipment_return_id = document.getElementById("equipment_return_id");
+var equipment_return_location = document.getElementById("equipment_return_location");
+var equipment_return_success = document.getElementById("equipment_return_success");
+
+var equipment_not_found = document.getElementById("equipment_not_found");
 
 employee_card_input.focus();
 
@@ -72,7 +108,7 @@ function show_user(user) {
             customer_name.innerHTML = user.name;
 
         } else {
-            if (user.search === "card"){
+            if (user.search === "card") {
                 showElements([
                     customer_not_found_div
                 ]);
@@ -96,7 +132,7 @@ function show_user(user) {
 
 customer_request_submit.addEventListener('click', function (e) {
     // Show customer card input
-    window.setTimeout(function() {
+    window.setTimeout(function () {
         customer_card_input.focus();
     }, 100);
 
@@ -148,6 +184,32 @@ customer_email_submit.addEventListener('click', function (e) {
     google.script.run.withSuccessHandler(show_user).new_customer(card_id, email);
 }, false);
 
+// Parts request
+parts_request_button.addEventListener('click', function (e) {
+    console.log("Parts request");
+    showElements([
+        parts_request
+    ]);
+
+    hideElements([
+        parts_request_success,
+        equipment_loan,
+        equipment_loan_success,
+        equipment_return,
+        equipment_return_success,
+        equipment_not_found,
+    ]);
+}, false);
+
+// Parts request submit
+parts_request_submit.addEventListener('click', function (e) {
+    google.script.run.parts_request(
+        employee_card_input.value,
+        customer_card_input.value,
+        parts_request_description.value
+    );
+}, false);
+
 // Employee login
 employee_login_submit.addEventListener('click', function (e) {
     // Just need to send request to worker log
@@ -158,9 +220,9 @@ employee_logout_submit.addEventListener("click", function (e) {
     // Just need to send request to worker log
 }, false);
 
-function hideElements(elements){
+function hideElements(elements) {
     //console.log("hide elements called");
-    for(var i = 0; i < elements.length; i++){
+    for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
         //console.log(element);
         element.style.display = "none";
@@ -170,9 +232,9 @@ function hideElements(elements){
     }
 }
 
-function showElements(elements){
+function showElements(elements) {
     //console.log("show elements called");
-    for(var i = 0; i < elements.length; i++){
+    for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
         element.style.display = "visible";
         element.classList.add("d-block");

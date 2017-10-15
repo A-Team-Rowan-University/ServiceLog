@@ -14,6 +14,11 @@ var customerSheet = userSpreadsheet.getSheetByName("Customers");
 var customerRange = customerSheet.getRange(2, 1, customerSheet.getLastRow(), customerSheet.getLastColumn());
 
 
+var logSpreadsheetID = "1gcjidaI-xNvL27dDWgDwCN-mhH7NCweGUrxGK7wsemI";
+
+var logSpreadsheet = SpreadsheetApp.openById(logSpreadsheetID);
+var logSheet = logSpreadsheet.getSheetByName("Log");
+
 function log(e) {
     Logger.log(e);
 }
@@ -108,23 +113,6 @@ function new_customer(card_id, email) {
     return customer;
 }
 
-function upload_customer_info (customer){
-    var first_empty_row = function (){
-        var spr = customerSheet;
-        var column = spr.getRange('A:A');
-        var values = column.getValues(); // get all data in one call
-        var ct = 0;
-        while ( values[ct][0] != "" ) {
-            ct++;
-        }
-            return (ct + 1);
-        };
-    values= [
-                [customer.card_id,
-                 customer.name,
-                 customer.department,
-                 customer.email]
-            ];
-    //throw first_empty_row;
-    var request = customerSheet.getRange(first_empty_row(), 1, 1, 4).setValues(values);
+function parts_request(employee_id, customer_id, description) {
+    logSheet.appendRow([employee_id, customer_id, "Parts Request", description]);
 }
