@@ -47,7 +47,7 @@ var equipment_loan_location = document.getElementById("equipment_loan_location")
 var equipment_loan_success = document.getElementById("equipment_loan_success");
 
 // Equipment return
-var equipment_return = document.getElementById("equipment_success_success");
+var equipment_return_button = document.getElementById("equipment_return_button");
 
 var equipment_return = document.getElementById("equipment_return");
 var equipment_return_id = document.getElementById("equipment_return_id");
