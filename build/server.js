@@ -116,3 +116,9 @@ function new_customer(card_id, email) {
 function parts_request(employee_id, customer_id, description) {
     logSheet.appendRow([employee_id, customer_id, "Parts Request", description]);
 }
+
+function equipment_loan(employee_id, customer_id, equipment_id) {
+   logSheet.appendRow([employee_id, customer_id, equipment_id]);
+    // TODO
+    // Send request to equipement log
+}

@@ -23,7 +23,6 @@ var customer_found_div = document.getElementById("customer_found");
 var customer_name = document.getElementById("customer_name");
 
 var customer_not_found_div = document.getElementById("customer_not_found");
-
 var customer_email = document.getElementById("customer_email");
 var customer_email_submit = document.getElementById("customer_email_submit");
 
@@ -57,6 +56,11 @@ var equipment_return_location = document.getElementById("equipment_return_locati
 var equipment_return_success = document.getElementById("equipment_return_success");
 
 var equipment_not_found = document.getElementById("equipment_not_found");
+
+
+// Reset Button
+var reset = document.getElementById("reset");
+var reset_button = document.getElementById("reset_button");
 
 employee_card_input.focus();
 
@@ -200,6 +204,7 @@ parts_request_button.addEventListener('click', function (e) {
         equipment_return_success,
         equipment_not_found,
     ]);
+    parts_request_description.focus();
 }, false);
 
 // Parts request submit
@@ -209,6 +214,9 @@ parts_request_submit.addEventListener('click', function (e) {
         customer_card_input.value,
         parts_request_description.value
     );
+    showElements([
+        parts_request_success
+    ]);
 }, false);
 
 // Employee login
@@ -220,6 +228,35 @@ employee_login_submit.addEventListener('click', function (e) {
 employee_logout_submit.addEventListener("click", function (e) {
     // Just need to send request to worker log
 }, false);
+
+reset_button.addEventListener('click', function (e) {
+    console.log("Reset Button");
+    reset_elements();
+}, false);
+
+function reset_elements() {
+    showElements([
+        employee_card
+    ]);
+
+    hideElements([
+        employee_found_div,
+        employee_not_found_div,
+        customer_card,
+        customer_found_div,
+        customer_not_found_div,
+        customer_email_not_found,
+        parts_request,
+        parts_request_success,
+        equipment_loan,
+        equipment_loan_success,
+        equipment_return,
+        equipment_return_success,
+        equipment_not_found,
+    ]);
+
+    employee_card_input.focus();
+}
 
 function hideElements(elements) {
     //console.log("hide elements called");
