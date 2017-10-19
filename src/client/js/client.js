@@ -218,6 +218,13 @@ parts_request_submit.addEventListener('click', function (e) {
     ]);
 }, false);
 
+// Equipment loan
+equipment_loan_button.addEventListener('click', function (e) {
+    showElements([
+        equipment_loan
+    ]);
+}, false);
+
 // Employee login
 employee_login_submit.addEventListener('click', function (e) {
     // Just need to send request to worker log
@@ -255,6 +262,12 @@ function reset_elements() {
     ]);
 
     employee_card_input.focus();
+    employee_card_input.value = "";
+    customer_card_input.value = "";
+    parts_request_description.value = "";
+    equipment_loan_id.value = "";
+    equipment_return_id.value = "";
+
 }
 
 function hideElements(elements) {
