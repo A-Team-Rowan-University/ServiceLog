@@ -62,7 +62,7 @@ function CardLookup(title, parent_element, card_type){
 
     // Failure
     self.failure = document.createElement("p");
-    self.failure.innerHTML = "Employee not found";
+    self.failure.innerHTML = self.type + " not found";
 
     self.parent_element.appendChild(self.main_element);
 
