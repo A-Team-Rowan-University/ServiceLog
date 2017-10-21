@@ -32,16 +32,17 @@ function include(filename) {
         .getContent();
 }
 
-function getUserInfo(user_id, is_employee) {
+function getUserInfo(user_id, type) {
     Logger.log(user_id);
-    Logger.log(is_employee);
+    Logger.log(type);
 
-    if(is_employee) {
+    if(type === "employee") {
         Logger.log("Employee");
 
         var employee = {
             card_id: user_id,
             name: null,
+            depeartment: null,
             email: null,
             type: "employee",
             search: "card"
@@ -54,7 +55,8 @@ function getUserInfo(user_id, is_employee) {
             Logger.log(row[0]);
             if(user_id != "" && row[0] === user_id) {
                 employee.name = row[1];
-                employee.email = row[2];
+                employee.department = row[2];
+                employee.email = row[3];
             }
         }
         return employee;
