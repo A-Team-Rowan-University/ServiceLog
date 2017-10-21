@@ -1,11 +1,11 @@
-function CardLookup(title, parent_element, card_type, on_success, on_failure){
+function CardLookup(title, parent_element, card_type){
     var self = this;
     console.log("Making card lookup");
     self.parent_element = parent_element;
     self.type = card_type;
 
-    self.on_success = on_success;
-    self.on_failure = on_failure;
+    self.on_success = function (user) {};
+    self.on_failure = function (user) {};
 
     self.main_element = document.createElement("div");
 
@@ -65,6 +65,10 @@ function CardLookup(title, parent_element, card_type, on_success, on_failure){
     self.failure.innerHTML = "Employee not found";
 
     self.parent_element.appendChild(self.main_element);
+
+    self.focus = function(){
+        self.input.focus();
+    }
 
     console.log(self);
 }
