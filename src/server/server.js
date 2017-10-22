@@ -119,6 +119,18 @@ function parts_request(employee_id, customer_id, description) {
     logSheet.appendRow([employee_id, customer_id, "Parts Request", description]);
 }
 
+function equipment_search(id) {
+    return {
+        id: id,
+        manufacturer: "Tektronics",
+        part_number: "Scope5000",
+        serial_number: "2535",
+        home_location: "Resource Center",
+        current_location: "Resource Center",
+        borrower: "" 
+    }
+}
+
 function equipment_loan(employee_id, customer_id, equipment_id) {
    logSheet.appendRow([employee_id, customer_id, equipment_id]);
     // TODO

@@ -38,13 +38,20 @@
   </nav>
 
   <div class="container-fluid">
-    <!-- Side bar with card info -->
-    <div class="col-2 bg-warning">
-      <div id="employee_card" class="bg-success">
+    <div class="row">
+      <!-- Side bar with card info -->
+      <div class="col-2">
+        <div id="employee_card">
 
+        </div>
+        <div id="customer_card">
+
+        </div>
       </div>
-      <div id="customer_card" class="bg-danger">
+      <div class="col-10">
+        <div id="search">
 
+        </div>
       </div>
     </div>
   </div>
@@ -59,6 +66,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
     crossorigin="anonymous"></script>
   <?!= include('card.js'); ?>
+  <?!= include('search.js'); ?>
   <?!= include('client.js'); ?>
 </body>
 
