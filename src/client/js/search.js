@@ -8,8 +8,14 @@ function Search(parent_element, requests) {
 
     self.onadd = function(search) {};
 
+    self.input_group = document.createElement("div");
+    self.input_group.classList += " input-group";
+    self.input_group.classList += " input-group-lg";
+
     self.search_input = document.createElement("input");
     self.search_input.type = "text";
+    self.search_input.classList += "form-control";
+    self.search_input.placeholder = "Instrument scan or service description";
     self.search_input.addEventListener('input', function (e) {
         var input = this.value;
         if(/[0-9]{11}/.test(input)){
@@ -28,15 +34,16 @@ function Search(parent_element, requests) {
             self.search_text = input;
         }
     }, false);
-    self.parent_element.appendChild(self.search_input);
+    self.input_group.appendChild(self.search_input);
 
-    self.button_box = document.createElement("div");
-    self.button_box.classList += "btn-group btn-group";
     self.requests.forEach(function(request, i){
-        var request_button = document.createElement("input");
+        var button_box = document.createElement("div");
+        button_box.classList += "input-group-btn";
+        var request_button = document.createElement("button");
         request_button.type = "button";
-        request_button.classList += "btn btn-primary";
-        request_button.value = request.name;
+        request_button.classList += " btn";
+        request_button.classList += " btn-primary";
+        request_button.innerHTML = request.name;
         request_button.addEventListener('click', function (e) {
             self.onadd({
                 search: self.search_text,
@@ -44,8 +51,9 @@ function Search(parent_element, requests) {
                 data: {},
             });
         }, false);
-        self.button_box.appendChild(request_button);
+        button_box.appendChild(request_button);
+        self.input_group.appendChild(button_box);
     });
 
-    self.parent_element.appendChild(self.button_box);
+    self.parent_element.appendChild(self.input_group);
 }
