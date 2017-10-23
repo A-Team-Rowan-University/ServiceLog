@@ -14,6 +14,8 @@ function Search(parent_element, requests) {
     self.input_group = document.createElement("div");
     self.input_group.classList += " input-group";
     self.input_group.classList += " input-group-lg";
+    self.input_group.classList += " d-flex";
+    self.input_group.classList += " m-3";
 
     self.search_input = document.createElement("input");
     self.search_input.type = "text";
