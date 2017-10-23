@@ -7,17 +7,19 @@ function CardLookup(title, parent_element, card_type){
     self.on_failure = function (user) {};
 
     self.main_element = document.createElement("div");
-
+    self.main_element.classList += "border rounded";
 
     // Title
-    self.title = document.createElement("p");
+    self.title = document.createElement("h5");
     self.title.innerHTML = title;
+    self.title.classList += "mb-1";
     self.main_element.appendChild(self.title);
 
 
     // Card input field
     self.input = document.createElement("input");
     self.input.type = "text";
+    self.input.classList += "mb-1";
 
     self.input.addEventListener('input', function (e) {
         var id = this.value;
@@ -52,15 +54,18 @@ function CardLookup(title, parent_element, card_type){
     // Success
     self.success = document.createElement("div");
     self.success_name = document.createElement("p");
+    self.success_name.classList += " mb-1";
     self.success.appendChild(self.success_name);
     self.success_email = document.createElement("p");
+    self.success_email.classList += " mb-1";
     self.success.appendChild(self.success_email);
     self.success_department = document.createElement("p");
+    self.success_department.classList += " mb-1";
     self.success.appendChild(self.success_department);
 
     // Failure
     self.failure = document.createElement("p");
-    self.failure.innerHTML = self.type + " not found";
+    self.failure.textContent = self.type + " not found";
 
     self.parent_element.appendChild(self.main_element);
 
