@@ -32,6 +32,7 @@ function Search(parent_element, requests) {
                     data: instrument,
                 });
                 self.search_input.value = "";
+                self.search_text = "";
             }).equipment_search(input);
         } else {
             self.search_text = input;
@@ -55,6 +56,7 @@ function Search(parent_element, requests) {
                 data: {},
             });
             self.search_input.value = "";
+            self.search_text = "";
         }, false);
         button_box.appendChild(request_button);
         self.input_group.appendChild(button_box);
