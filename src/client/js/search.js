@@ -7,6 +7,9 @@ function Search(parent_element, requests) {
     self.search_text = "";
 
     self.onadd = function(search) {};
+    self.focus = function() {
+        self.search_input.focus();
+    }
 
     self.input_group = document.createElement("div");
     self.input_group.classList += " input-group";
@@ -26,6 +29,7 @@ function Search(parent_element, requests) {
                 self.onadd({
                     search: self.search_text,
                     type: "instrument",
+                    name: "Instrument Loan",
                     data: instrument,
                 });
             }).equipment_search(input);
@@ -48,6 +52,7 @@ function Search(parent_element, requests) {
             self.onadd({
                 search: self.search_text,
                 type: request.type,
+                name: request.name,
                 data: {},
             });
         }, false);
