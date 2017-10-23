@@ -1,6 +1,5 @@
 function CardLookup(title, parent_element, card_type){
     var self = this;
-    console.log("Making card lookup");
     self.parent_element = parent_element;
     self.type = card_type;
 
@@ -25,7 +24,6 @@ function CardLookup(title, parent_element, card_type){
         self.success.remove();
         self.failure.remove();
         if (id.length >= 8) {
-            console.log("ID entered");
             google.script.run.withSuccessHandler(function(user){
                 if(user.name) {
                     self.main_element.appendChild(self.success);
@@ -69,6 +67,4 @@ function CardLookup(title, parent_element, card_type){
     self.focus = function(){
         self.input.focus();
     }
-
-    console.log(self);
 }

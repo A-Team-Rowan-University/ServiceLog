@@ -45,6 +45,5 @@ customer_card.on_success = function(user) {
 }
 
 search.onadd = function(search) {
-    console.log(search);
     service_list.add_service(search);
 }

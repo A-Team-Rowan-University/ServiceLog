@@ -23,7 +23,6 @@ function Search(parent_element, requests) {
         var input = this.value;
         if(/[0-9]{11}/.test(input)){
             // This is a scanned id
-            console.log("Instrument ID: " + input);
             google.script.run.withSuccessHandler(function (instrument) {
                 self.search_text = input;
                 self.onadd({
@@ -32,9 +31,9 @@ function Search(parent_element, requests) {
                     name: "Instrument Loan",
                     data: instrument,
                 });
+                self.search_input.value = "";
             }).equipment_search(input);
         } else {
-            console.log("Not instrument ID: " + input);
             self.search_text = input;
         }
     }, false);
@@ -55,6 +54,7 @@ function Search(parent_element, requests) {
                 name: request.name,
                 data: {},
             });
+            self.search_input.value = "";
         }, false);
         button_box.appendChild(request_button);
         self.input_group.appendChild(button_box);
