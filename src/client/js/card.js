@@ -74,4 +74,10 @@ function CardLookup(title, parent_element, card_type){
     self.focus = function(){
         self.input.focus();
     }
+
+    self.clear = function(){
+        self.input.value = "";
+        self.success.remove();
+        self.failure.remove();
+    }
 }

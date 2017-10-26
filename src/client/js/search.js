@@ -65,4 +65,9 @@ function Search(parent_element, requests) {
     });
 
     self.parent_element.appendChild(self.input_group);
+
+    self.clear = function(){
+        self.search_input.value = "";
+        self.search_text = "";
+    }
 }

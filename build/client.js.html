@@ -2,6 +2,8 @@
  
 var requests_div = document.getElementById("requests");
 
+var alerts_div = document.getElementById("alerts");
+
 var employee_card = new CardLookup(
     "Employee Card", 
     document.getElementById("employee_card"),
@@ -58,12 +60,44 @@ search.onadd = function(search) {
     service_list.add_service(search);
 }
 
-submit.on_submit = function() {
+submit.get_info = function() {
     return {
         services: service_list.services,
         employee: employee,
         customer: customer
     }
+}
+
+submit.on_submit = function() {
+    self.employee_card.clear();
+    self.customer_card.clear();
+    self.service_list.clear();
+    self.employee = null;
+    self.customer = null;
+
+    show_alert("Submission successful", "success");
+}
+
+submit.on_failed_submit = function() {
+    show_alert("Both an employee and a customer are required for submission", "danger");
+}
+
+function show_alert(alert_text, level){
+
+    while(alerts_div.firstChild){
+        alerts_div.removeChild(alerts_div.firstChild);
+    }
+
+    var alert = document.createElement("div");
+    alert.classList += " alert";
+    alert.classList += " alert-" + level;
+    alert.role = "alert";
+
+    var text = document.createElement("p");
+    text.textContent = alert_text;
+    alert.appendChild(text);
+
+    alerts_div.appendChild(alert);
 }
  </script>
 

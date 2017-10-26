@@ -4,17 +4,23 @@ function Submit(parent_element) {
 
     self.parent_element = parent_element;
 
-    self.on_submit = function() {
+    self.get_info = function() {
         return null;
     }
 
+    self.on_submit = function() {}
+
+    self.on_failed_submit = function() {}
+
 
     self.submit_button = document.createElement("button");
-    self.submit_button.classList += " btn btn-primary";
+    self.submit_button.classList += " m-3 btn btn-primary";
+    self.submit_button.textContent = "Submit";
     self.submit_button.addEventListener('click', function() {
-        var state = self.on_submit();
-        console.log(self.on_submit());
-        if(state.employee && state.customer){
+        var state = self.get_info();
+        console.log(state);
+        if(state && state.employee && state.customer){
+            self.on_submit();
             console.log("Submitint");
             var to_submit = [];
             var len = state.services.length;
@@ -27,6 +33,9 @@ function Submit(parent_element) {
                 });
             }
             google.script.run.submit_services(to_submit);
+        } else {
+            console.log("Not sumbitting");
+            self.on_failed_submit();
         }
     }, false);
 

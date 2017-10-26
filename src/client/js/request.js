@@ -23,6 +23,12 @@ function ServiceList(parent_element) {
     }
 
     self.parent_element.appendChild(self.list_group);
+
+    self.clear = function(){
+        while(self.list_group.firstChild){
+            self.list_group.removeChild(self.list_group.firstChild);
+        }
+    }
 }
 
 function Service(service){
