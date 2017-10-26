@@ -3,6 +3,8 @@ function ServiceList(parent_element) {
     var self = this;
     self.parent_element = parent_element;
 
+    self.services = [];
+
     self.list_group = document.createElement("div");
     self.list_group.classList += " m-3 list-group";
     
@@ -10,8 +12,13 @@ function ServiceList(parent_element) {
         var service_element = new Service(service);
 
         self.list_group.appendChild(service_element.main_element);
+        self.services.push(service);
         service_element.on_remove = function() {
             service_element.main_element.remove();
+            var index = self.services.indexOf(service);
+            if(index > -1) {
+                self.services.splice(index, 1);
+            }
         }
     }
 

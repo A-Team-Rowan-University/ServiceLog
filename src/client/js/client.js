@@ -35,15 +35,32 @@ var service_list = new ServiceList(
     requests_div
 );
 
+var submit = new Submit(
+    document.getElementById("submit")
+);
+
+var employee = null;
+var customer = null;
 
 employee_card.focus();
 employee_card.on_success = function(user) {
     customer_card.focus();
+    self.employee = user;
 }
+
 customer_card.on_success = function(user) {
     search.focus();
+    self.customer = user;
 }
 
 search.onadd = function(search) {
     service_list.add_service(search);
+}
+
+submit.on_submit = function() {
+    return {
+        services: service_list.services,
+        employee: employee,
+        customer: customer
+    }
 }

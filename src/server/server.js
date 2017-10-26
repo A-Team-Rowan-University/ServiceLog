@@ -136,3 +136,16 @@ function equipment_loan(employee_id, customer_id, equipment_id) {
     // TODO
     // Send request to equipement log
 }
+
+function submit_services(services) {
+    var len = services.length;
+    for(var i = 0; i < len; i++){
+        var service = services[i];
+        logSheet.appendRow([
+            service.employee.name,
+            service.customer.name,
+            service.service.name,
+            service.service.search,
+        ]);
+    }
+}
