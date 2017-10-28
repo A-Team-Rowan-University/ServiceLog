@@ -53,7 +53,15 @@ function Service(service){
 
     self.description = document.createElement("p");
     self.description.classList += "mb-1";
-    self.description.textContent = service.search;
+    if(self.service.type === "instrument"){
+        self.description.textContent = 
+            self.service.data.manufacturer + 
+            " " + self.service.data.part_number + 
+            " S/N: " + self.service.data.serial_number + 
+            " (" + self.service.search + ")";
+    }else{
+        self.description.textContent = service.search;
+    }
     self.info_element.appendChild(self.description);
 
     self.main_element.appendChild(self.info_element);

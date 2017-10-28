@@ -68,6 +68,7 @@ customer_card.on_failure = function(user) {
 search.onadd = function(service) {
     search.focus();
     service_list.add_service(service);
+    console.log(service);
 }
 
 submit.get_info = function() {
