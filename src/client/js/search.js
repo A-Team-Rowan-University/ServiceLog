@@ -15,11 +15,10 @@ function Search(parent_element, requests) {
     self.input_group.classList += " input-group";
     self.input_group.classList += " input-group-lg";
     self.input_group.classList += " d-flex";
-    self.input_group.classList += " m-3";
 
     self.search_input = document.createElement("input");
     self.search_input.type = "text";
-    self.search_input.classList += "form-control";
+    self.search_input.classList += " form-control";
     self.search_input.placeholder = "Instrument scan or service description";
     self.search_input.addEventListener('input', function (e) {
         var input = this.value;
@@ -49,7 +48,7 @@ function Search(parent_element, requests) {
         request_button.type = "button";
         request_button.classList += " btn";
         request_button.classList += " btn-primary";
-        request_button.innerHTML = request.name;
+        request_button.textContent = request.name;
         request_button.addEventListener('click', function (e) {
             self.onadd({
                 search: self.search_text,

@@ -5,15 +5,17 @@ var requests_div = document.getElementById("requests");
 var alerts_div = document.getElementById("alerts");
 
 var employee_card = new CardLookup(
-    "Employee Card", 
+    "Employee", 
     document.getElementById("employee_card"),
     "employee",
+    false,
 );
 
 var customer_card = new CardLookup(
-    "Customer Card", 
+    "Customer", 
     document.getElementById("customer_card"),
     "customer",
+    true,
 );
 
 var search = new Search(
@@ -48,16 +50,25 @@ var customer = null;
 employee_card.focus();
 employee_card.on_success = function(user) {
     customer_card.focus();
-    self.employee = user;
+    employee = user;
+}
+
+employee_card.on_failure = function(user) {
+    employee = null;
 }
 
 customer_card.on_success = function(user) {
     search.focus();
-    self.customer = user;
+    customer = user;
 }
 
-search.onadd = function(search) {
-    service_list.add_service(search);
+customer_card.on_failure = function(user) {
+    customer = null;
+}
+
+search.onadd = function(service) {
+    search.focus();
+    service_list.add_service(service);
 }
 
 submit.get_info = function() {
@@ -69,16 +80,23 @@ submit.get_info = function() {
 }
 
 submit.on_submit = function() {
-    self.employee_card.clear();
-    self.customer_card.clear();
-    self.service_list.clear();
-    self.employee = null;
-    self.customer = null;
+    employee_card.focus();
+
+    employee_card.clear();
+    customer_card.clear();
+    service_list.clear();
+    employee = null;
+    customer = null;
 
     show_alert("Submission successful", "success");
 }
 
 submit.on_failed_submit = function() {
+    if(employee === null){
+        employee_card.focus();
+    }else{
+        customer_card.focus();
+    }    
     show_alert("Both an employee and a customer are required for submission", "danger");
 }
 

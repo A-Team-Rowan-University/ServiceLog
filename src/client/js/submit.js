@@ -14,7 +14,7 @@ function Submit(parent_element) {
 
 
     self.submit_button = document.createElement("button");
-    self.submit_button.classList += " m-3 btn btn-primary";
+    self.submit_button.classList += " btn btn-primary";
     self.submit_button.textContent = "Submit";
     self.submit_button.addEventListener('click', function() {
         var state = self.get_info();

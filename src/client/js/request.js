@@ -6,7 +6,7 @@ function ServiceList(parent_element) {
     self.services = [];
 
     self.list_group = document.createElement("div");
-    self.list_group.classList += " m-3 list-group";
+    self.list_group.classList += " list-group";
     
     self.add_service = function(service){
         var service_element = new Service(service);
