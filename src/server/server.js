@@ -115,26 +115,14 @@ function new_customer(card_id, email) {
     return customer;
 }
 
-function parts_request(employee_id, customer_id, description) {
-    logSheet.appendRow([employee_id, customer_id, "Parts Request", description]);
-}
-
 function equipment_search(id) {
-    return {
-        id: id,
-        manufacturer: "Tektronics",
-        part_number: "Scope5000",
-        serial_number: "2535",
-        home_location: "Resource Center",
-        current_location: "Resource Center",
-        borrower: "" 
-    }
-}
 
-function equipment_loan(employee_id, customer_id, equipment_id) {
-   logSheet.appendRow([employee_id, customer_id, equipment_id]);
-    // TODO
-    // Send request to equipement log
+    Logger.log("Hello there");
+    Logger.log(PersonLookup.lookup());
+
+    var info = EquipmentLog.getItemInfo(id);
+    Logger.log(info);
+    return info
 }
 
 function submit_services(services) {
@@ -147,5 +135,8 @@ function submit_services(services) {
             service.service.name,
             service.service.search,
         ]);
+        if(service.service.type === "instrument_loan"){
+        }
     }
 }
+

@@ -7,7 +7,7 @@ function ServiceList(parent_element) {
 
     self.list_group = document.createElement("div");
     self.list_group.classList += " list-group";
-    
+
     self.add_service = function(service){
         var service_element = new Service(service);
 
@@ -53,11 +53,11 @@ function Service(service){
 
     self.description = document.createElement("p");
     self.description.classList += "mb-1";
-    if(self.service.type === "instrument"){
-        self.description.textContent = 
-            self.service.data.manufacturer + 
-            " " + self.service.data.part_number + 
-            " S/N: " + self.service.data.serial_number + 
+    if(self.service.type === "instrument-loan" || self.service.type === "instrument-return"){
+        self.description.textContent =
+            self.service.data.manufacturer +
+            " " + self.service.data.part_number +
+            " S/N: " + self.service.data.serial_number +
             " (" + self.service.search + ")";
     }else{
         self.description.textContent = service.search;
@@ -65,6 +65,12 @@ function Service(service){
     self.info_element.appendChild(self.description);
 
     self.main_element.appendChild(self.info_element);
+
+    if(self.service.type === "instrument-loan" || self.service.type === "instrument-return"){
+        self.location_input_group = document.createElement("div");
+        self.location_input_group.classList += " input-group";
+        self.location_input_group.classList += " d-flex";
+    }
 
     self.remove_button = document.createElement("button");
     self.remove_button.classList += "btn btn-danger";

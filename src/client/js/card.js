@@ -52,7 +52,7 @@ function CardLookup(title, parent_element, card_type, lookup_email){
                     }else{
                         self.main_element.appendChild(self.failure);
                     }
-                    
+
                     if(typeof self.on_failure === "function") {
                         self.on_failure(user);
                     }
