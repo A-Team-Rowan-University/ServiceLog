@@ -54,6 +54,7 @@ function Service(service){
     self.description = document.createElement("p");
     self.description.classList += "mb-1";
     if(self.service.type === "instrument-loan" || self.service.type === "instrument-return"){
+        self.title.textContent += " to " + self.service.data.current_location;
         self.description.textContent =
             self.service.data.manufacturer +
             " " + self.service.data.part_number +
