@@ -125,17 +125,24 @@ function equipment_search(id) {
     return info
 }
 
-function submit_services(services) {
+function submit_services(services, employee, customer) {
     var len = services.length;
     for(var i = 0; i < len; i++){
         var service = services[i];
+        Logger.log(JSON.stringify(service, null, 2));
         logSheet.appendRow([
             service.employee.name,
             service.customer.name,
             service.service.name,
             service.service.search,
         ]);
-        if(service.service.type === "instrument_loan"){
+        if(service.service.type === "instrument-loan"){
+            Logger.log("Equipement Loan!");
+            EquipmentLog.checkOut(service.service.search, service.service.data.current_location, customer.email);
+        }
+        if(service.service.type === "instrument-return"){
+            Logger.log("Equipement Return!");
+            EquipmentLog.checkIn(service.service.search);
         }
     }
 }

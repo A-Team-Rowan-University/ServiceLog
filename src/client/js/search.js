@@ -1,5 +1,6 @@
 
 function Search(parent_element, requests, on_add) {
+    console.log(this);
     var self = this;
     self.parent_element = parent_element;
     self.requests = requests;
@@ -9,9 +10,6 @@ function Search(parent_element, requests, on_add) {
     // Function that gets called when a service is added
     // Can be redefined by user
     self.on_add = on_add;
-    self.focus = function () {
-        self.search_input.focus();
-    }
 
     self.clear_info = function () {
         self.info.classList += " hidden-lg-down";
@@ -77,6 +75,11 @@ function Search(parent_element, requests, on_add) {
 
     self.parent_element.appendChild(self.input_group);
     self.parent_element.appendChild(self.info);
+
+    self.focus = function () {
+        console.log("Search focusing");
+        self.search_input.focus();
+    }
 
     self.clear = function(){
         self.search_input.value = "";

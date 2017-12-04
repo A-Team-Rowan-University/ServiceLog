@@ -32,7 +32,7 @@ function Submit(parent_element) {
                     service: service
                 });
             }
-            google.script.run.submit_services(to_submit);
+            google.script.run.submit_services(to_submit, state.employee, state.customer);
         } else {
             console.log("Not sumbitting");
             self.on_failed_submit();

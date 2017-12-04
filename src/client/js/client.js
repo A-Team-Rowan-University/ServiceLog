@@ -41,7 +41,7 @@ var search = new Search(
 );
 */
 
-var Search = new Search (
+var search = new Search (
     document.getElementById("search"),
     [
         // Scanned an instrument
@@ -71,7 +71,7 @@ var Search = new Search (
                         add_button.textContent = "Add";
 
 
-                        if(instrument.current_location === instrument.home_location){
+                        if(instrument.current_location === "Home Location"){
 
                             name.textContent = "Loan: " + name.textContent;
 
@@ -201,6 +201,7 @@ var Search = new Search (
         },
     ],
     function(service) {
+        console.log(search);
         search.focus();
         service_list.add_service(service);
         console.log(service);
@@ -229,6 +230,7 @@ employee_card.on_failure = function(user) {
 }
 
 customer_card.on_success = function(user) {
+    console.log(search);
     search.focus();
     customer = user;
 }
